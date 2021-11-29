@@ -26,9 +26,16 @@ class Example(Frame):
         В теории всё оперируется точками и векторами
         Ещё бы научиться правильно пользоваться гитом
         """
-        trinagle.draw_triangle(START_X + 200, START_Y + 20,
-                               START_X + 20, START_Y + 0,
-                               START_X + 100, START_Y + 100)
+        area = trinagle.draw_triangle(START_X + 50, START_Y + 0,
+                               START_X + 0, START_Y + 50,
+                               START_X + 0, START_Y + 0)
+
+        print(f"area of triangle is {area['area']}")
+        trinagle.draw_2dcube(START_X+ 100, START_Y- 100,
+                             0, 100,
+                             100, 100,
+                             100, 0,
+                             0, 0)
         trinagle.pack(fill=BOTH, expand=1)
 
 
