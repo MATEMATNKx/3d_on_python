@@ -13,6 +13,7 @@ class Triangle(Canvas):
         self.create_line(x1, y1, x2, y2, fill = 'red', width = 3)
         self.create_line(x2, y2, x3, y3, fill = 'blue', width = 3)
         self.create_line(x3, y3, x1, y1, fill = 'black', width = 3)
+        "вот тут обновили отрисовку"
         print(x1, y1)
         print(x2, y2)
         print(x3, y3)

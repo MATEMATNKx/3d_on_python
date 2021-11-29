@@ -1,6 +1,6 @@
 from tkinter import Canvas
 
-class Vector(Canvas):
+class Vector():
 
     """
     За начальную точку координат принимается крайняя верхняя левая точка
@@ -12,22 +12,20 @@ class Vector(Canvas):
     __x = 0
     __y = 0
     def __init__(self, x, y):
-        super().__init__()
         self.__x = x
         self.__y = -y
-        #self.create_line(0,0, self.__x, self.__y)
 
 
 
     def add_V_t_V(self, vector_f1):
-        vector = Vector(vector_f1.get_vector()[0] + self.__x,
-                        -(vector_f1.get_vector()[1] + self.__y))
+        vector = Vector(self.__x + vector_f1.get_vector()[0],
+                        -(self.__y + vector_f1.get_vector()[1]))
         return vector
 
 
     def substract_V_From_V(self, vector_f1):
-        vector = Vector(vector_f1.get_vector()[0] - self.__x,
-                        -(vector_f1.get_vector()[1] - self.__y))
+        vector = Vector(self.__x - vector_f1.get_vector()[0],
+                        -(self.__y - vector_f1.get_vector()[1]))
         return vector
 
     """

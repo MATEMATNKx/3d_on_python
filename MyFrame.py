@@ -1,6 +1,7 @@
 from tkinter import Tk, Canvas, Frame, BOTH
 
 from Vector import Vector
+from Triangle import Triangle
 class Example(Frame):
 
     def __init__(self):
@@ -8,24 +9,44 @@ class Example(Frame):
         self.initUI()
 
     def initUI(self):
-        self.master.title("Вектора")
+        self.master.title("Векторая графика")
         self.pack(fill=BOTH, expand=1)
 
-        canvas = Canvas(self)
+
 
         #стартовая позиция отрисовки векторов
         START_X = 200
         START_Y = 200
 
+        trinagle = Triangle(self)
+
+        """
+        метод triangle на вход принимает вектора и отрисовывает их
+        более подробней разобраться как работается эта штука.
+        В теории всё оперируется точками и векторами
+        Ещё бы научиться правильно пользоваться гитом
+        """
+        trinagle.draw_triangle(START_X + 200, START_Y + 20,
+                               START_X + 20, START_Y + 0,
+                               START_X + 100, START_Y + 100)
+        trinagle.pack(fill=BOTH, expand=1)
+
+
+        '''
         vector = Vector(0, 100)
         vector2 = Vector(100, 100)
-        vector3 = vector.substract_V_From_V(vector2)
         print(vector)
         print(vector2)
-        print(vector3)
 
+        print(f'Substract vector {vector} from vector {vector2}')
+        vector3 = vector.substract_V_From_V(vector2)
+        print(vector3)
+        vector4 = vector.add_V_t_V(vector2)
+        print(f'Add vector {vector} to vector {vector2}')
+        print(vector4)
 
         #отрисовка векторов
+        canvas = Canvas(self)
         canvas.create_line(START_X, START_Y,
                            START_X+vector.get_vector()[0], START_Y + vector.get_vector()[1],
                            fill = "red", width = 3)
@@ -35,11 +56,9 @@ class Example(Frame):
         canvas.create_line(START_X, START_Y,
                            START_X+vector3.get_vector()[0], START_Y + vector3.get_vector()[1],
                             fill = "blue", width = 3)
-
-
-        """
-        canvas.create_line(300, 35, 300, 200, dash=(4, 2))
-        canvas.create_line(55, 85, 155, 85, 105, 180, 55, 85)
-        """
+        canvas.create_line(START_X, START_Y,
+                           START_X+vector4.get_vector()[0], START_Y + vector4.get_vector()[1],
+                            fill = "black", width = 3)
+        
         canvas.pack(fill=BOTH, expand=1)
-
+        '''
