@@ -1,9 +1,9 @@
 import math
 from tkinter import Canvas
+import Matrix
 
 
-
-class Vector:
+class Vector():
 
     """
     За начальную точку координат принимается крайняя верхняя левая точка
@@ -17,8 +17,6 @@ class Vector:
     def __init__(self, x, y):
         self.__x = x
         self.__y = -y
-
-
 
     def add_V_t_V(self, vector_f1):
         vector = Vector(self.__x + vector_f1.get_vector()[0],
@@ -54,7 +52,6 @@ class Vector:
     def set_vector(self, x, y):
         self.__y = y
         self.__x = x
-
 
 
     def __str__(self):

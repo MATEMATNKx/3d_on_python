@@ -31,6 +31,10 @@ class Matrix:
         string = str(self.__coords)
         return string
 
+
+"""
+EXAMPLE
 a = Matrix([[0, 1], [1, 0]])
 b = Matrix([[1, 0], [0, 1]])
 print((a+b).dot_product(10))
+"""

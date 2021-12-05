@@ -1,5 +1,6 @@
 from Vector import Vector
 from tkinter import Canvas
+from Matrix import Matrix
 class Scene(Canvas):
     def __init__(self,  master=None, cnf={}, **kw):
         """
@@ -44,7 +45,7 @@ class Scene(Canvas):
         self.create_line(x3, y3, x4, y4, fill = 'black', width = 3)
         self.create_line(x4, y4, x1, y1, fill = 'yellow', width = 3)
 
-    def draw_vector(self, centerx, centery, vector: Vector, color: str):
+    def draw_vector(self, centerx, centery, vector: Vector, color: str, basis: list):
         """
         :param centerx: start pos_x
         :param centery: start pos_y
@@ -52,8 +53,16 @@ class Scene(Canvas):
         :param color: colof for filling
         :return:
         """
+        coords = [[0], [0]]
+        coords[0][0] = basis[0][0] * vector.get_vector()[0] + basis[0][1] * vector.get_vector()[1]
+        coords[1][0] = basis[1][0] * vector.get_vector()[0] + basis[1][1] * vector.get_vector()[1]
+        self.create_line(centerx, centery,
+                         centerx + coords[0][0], centery + coords[1][0],
+                         fill=color, width=3)
+
+        """
         self.create_line(centerx, centery,
                     centerx + vector.get_vector()[0], centery + vector.get_vector()[1],
                     fill=color, width=3)
-
+        """
 

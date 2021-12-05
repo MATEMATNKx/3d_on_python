@@ -1,7 +1,10 @@
+import time
 from tkinter import Tk, Canvas, Frame, BOTH
 
 from Vector import Vector
 from Scene import Scene
+from Matrix import Matrix
+
 class Example(Frame):
 
     def __init__(self):
@@ -18,9 +21,39 @@ class Example(Frame):
         START_X = 250
         START_Y = 250
 
+        #convert list to matrix
+        basis = [[1, 0], [0, 1]]
+        basis = basis
         scene = Scene(self)
+        scene.pack(fill=BOTH, expand=1)
 
-        """
+        def callback(event):
+            scene.delete("all")
+            basis[0][0] += 0.1
+            basis[1][1] += 0.1
+            draw(basis)
+
+        def callback2(event):
+            scene.delete("all")
+            basis[0][0] -= 0.1
+            basis[1][1] -= 0.1
+            draw(basis)
+
+
+        scene.bind("<Button-1>", callback)
+        scene.bind("<Button-3>", callback2)
+
+        def draw(basis):
+            vector = Vector(50, 0)
+            scene.draw_vector(START_X - 100, START_Y - 100, vector, 'red', basis)
+            vector2 = Vector(0, 50)
+            scene.draw_vector(START_X - 100, START_Y - 100, vector2, "blue", basis)
+            vector3 = vector.add_V_t_V(vector2)
+            scene.draw_vector(START_X - 100, START_Y - 100, vector3, "black", basis)
+            vector4 = vector.substract_V_From_V(vector2)
+            scene.draw_vector(START_X - 100, START_Y - 100, vector4, "yellow", basis)
+
+        """"<Button-2>"
         метод triangle на вход принимает вектора и отрисовывает их
         более подробней разобраться как работается эта штука.
         В теории всё оперируется точками и векторами
@@ -38,18 +71,24 @@ class Example(Frame):
                              0, 0)
 
         vector = Vector(50,0)
-        scene.draw_vector(START_X-100, START_Y-100, vector, 'red')
+        scene.draw_vector(START_X-100, START_Y-100, vector, 'red', basis)
         vector2 = Vector(0,50)
-        scene.draw_vector(START_X - 100, START_Y - 100, vector2, "blue")
+        scene.draw_vector(START_X - 100, START_Y - 100, vector2, "blue", basis)
         print(f'cos red, blue vectors is:{vector.cos(vector2)}')
         vector3 = vector.add_V_t_V(vector2)
-        scene.draw_vector(START_X - 100, START_Y - 100, vector3, "black")
+        scene.draw_vector(START_X - 100, START_Y - 100, vector3, "black",basis)
         print(f'cos blue, black vectors is:{vector2.cos(vector3)}')
         print(f'cos black, blue vectors is:{vector3.cos(vector2)}')
         vector4 = vector.substract_V_From_V(vector2)
-        scene.draw_vector(START_X - 100, START_Y - 100, vector4, "yellow")
+        scene.draw_vector(START_X - 100, START_Y - 100, vector4, "yellow",basis)
         print(f'cos black, black vectors is:{vector3.cos(vector3)}')
-        scene.pack(fill=BOTH, expand=1)
+        #scene.pack(fill=BOTH, expand=1)
+        #scene.delete("all")
+        #scene.draw_vector(START_X-100, START_Y-100, vector, 'red', basis)
+
+
+
+        time.sleep(1)
 
 
 
