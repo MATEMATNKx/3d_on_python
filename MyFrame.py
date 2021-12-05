@@ -41,11 +41,14 @@ class Example(Frame):
         scene.draw_vector(START_X-100, START_Y-100, vector, 'red')
         vector2 = Vector(0,50)
         scene.draw_vector(START_X - 100, START_Y - 100, vector2, "blue")
+        print(f'cos red, blue vectors is:{vector.cos(vector2)}')
         vector3 = vector.add_V_t_V(vector2)
         scene.draw_vector(START_X - 100, START_Y - 100, vector3, "black")
+        print(f'cos blue, black vectors is:{vector2.cos(vector3)}')
+        print(f'cos black, blue vectors is:{vector3.cos(vector2)}')
         vector4 = vector.substract_V_From_V(vector2)
         scene.draw_vector(START_X - 100, START_Y - 100, vector4, "yellow")
-
+        print(f'cos black, black vectors is:{vector3.cos(vector3)}')
         scene.pack(fill=BOTH, expand=1)
 
 
