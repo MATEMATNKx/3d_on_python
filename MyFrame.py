@@ -1,7 +1,7 @@
 from tkinter import Tk, Canvas, Frame, BOTH
 
 from Vector import Vector
-from Triangle import Triangle
+from Scene import Scene
 class Example(Frame):
 
     def __init__(self):
@@ -15,10 +15,10 @@ class Example(Frame):
 
 
         #стартовая позиция отрисовки векторов
-        START_X = 200
-        START_Y = 200
+        START_X = 250
+        START_Y = 250
 
-        trinagle = Triangle(self)
+        scene = Scene(self)
 
         """
         метод triangle на вход принимает вектора и отрисовывает их
@@ -26,17 +26,28 @@ class Example(Frame):
         В теории всё оперируется точками и векторами
         Ещё бы научиться правильно пользоваться гитом
         """
-        area = trinagle.draw_triangle(START_X + 50, START_Y + 0,
+        area = scene.draw_triangle(START_X + 50, START_Y + 0,
                                START_X + 0, START_Y + 50,
                                START_X + 0, START_Y + 0)
 
         print(f"area of triangle is {area['area']}")
-        trinagle.draw_2dcube(START_X+ 100, START_Y- 100,
+        scene.draw_2dcube(START_X+ 100, START_Y- 100,
                              0, 100,
                              100, 100,
                              100, 0,
                              0, 0)
-        trinagle.pack(fill=BOTH, expand=1)
+
+        vector = Vector(50,0)
+        scene.draw_vector(START_X-100, START_Y-100, vector, 'red')
+        vector2 = Vector(0,50)
+        scene.draw_vector(START_X - 100, START_Y - 100, vector2, "blue")
+        vector3 = vector.add_V_t_V(vector2)
+        scene.draw_vector(START_X - 100, START_Y - 100, vector3, "black")
+        vector4 = vector.substract_V_From_V(vector2)
+        scene.draw_vector(START_X - 100, START_Y - 100, vector4, "yellow")
+
+        scene.pack(fill=BOTH, expand=1)
+
 
 
         '''
