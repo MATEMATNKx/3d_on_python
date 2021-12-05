@@ -7,6 +7,7 @@ def main():
     ex = Example()
     root.geometry("600x400+300+300")
     root.mainloop()
+    #'nothing'
 
 
 if __name__ == '__main__':
