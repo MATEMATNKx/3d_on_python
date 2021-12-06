@@ -1,3 +1,4 @@
+import math
 import time
 from tkinter import Tk, Canvas, Frame, BOTH
 
@@ -20,7 +21,7 @@ class Example(Frame):
         #стартовая позиция отрисовки векторов
         START_X = 250
         START_Y = 250
-
+        fi = [0.1]
         #convert list to matrix
         basis = [[1, 0], [0, 1]]
         basis = basis
@@ -39,9 +40,38 @@ class Example(Frame):
             basis[1][1] -= 0.1
             draw(basis)
 
+        def reflect_x(event):
+            scene.delete("all")
+            basis[0][0] = -basis[0][0]
+            draw(basis)
+        def reflect_y(event):
+            scene.delete("all")
+            basis[1][1] = -basis[1][1]
+            draw(basis)
 
+        def rotation_fi(event):
+            scene.delete("all")
+            """
+            basis[0][0] = math.cos(fi[0])
+            basis[0][1] = math.sin(0.1)
+            basis[1][0] = -math.sin(0.1)
+            basis[1][1] = math.cos(0.1)
+            прикольный эффект
+            """
+            basis[0][0] = math.cos(fi[0])
+            basis[0][1] = math.sin(fi[0])
+            basis[1][0] = -math.sin(fi[0])
+            basis[1][1] = math.cos(fi[0])
+            fi[0]+=0.1
+            draw(basis)
+
+        scene.bind("<Left>",rotation_fi)
+        scene.bind("<x>", reflect_x)
+        scene.bind("<y>", reflect_y)
         scene.bind("<Button-1>", callback)
         scene.bind("<Button-3>", callback2)
+
+        scene.focus_set()
 
         def draw(basis):
             vector = Vector(50, 0)
